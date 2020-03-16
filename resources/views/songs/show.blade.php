@@ -1,1 +1,1 @@
-masato
+{{ $song->detail }}
