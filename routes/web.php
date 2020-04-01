@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
- return view('welcome');
-});
+// Route::get('/', function () {
+//  return view('welcome');
+// });
 
 Route::get('/', 'SongController@index');
 Route::resource('/songs', 'SongController');
@@ -32,12 +32,11 @@ Route::group(['middleware' => 'auth:user'], function () {
 */
 Route::group(['prefix' => 'admin'], function () {
  Route::get('/', function () {
-  return redirect('/admin/home');
+  return redirect('/admin/create');
  });
  Route::get('login',     'Admin\LoginController@showLoginForm')->name('admin.login');
  Route::post('login',    'Admin\LoginController@login');
 });
-
 /*
 |--------------------------------------------------------------------------
 | 4) Admin ログイン後
@@ -45,5 +44,5 @@ Route::group(['prefix' => 'admin'], function () {
 */
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
  Route::post('logout',   'Admin\LoginController@logout')->name('admin.logout');
- Route::get('home',      'Admin\HomeController@index')->name('admin.home');
+ Route::get('create',      'Admin\HomeController@index')->name('admin.home');
 });
