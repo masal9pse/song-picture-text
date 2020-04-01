@@ -19,9 +19,10 @@
       <input type="text" name="title">
       <br>
       歌詞
-      <input type="text" name="detail" class="mb-3">
+      {{-- <input type="text" name="detail" class="mb-3"> --}}
+      <textarea name="detail" class="mt-5"></textarea>
       <br>
-      <input type="submit" value="登録する" class="btn btn-info">
+      <input type="submit" value="登録する" class="btn btn-info mt-5">
      </form>
     </div>
    </div>

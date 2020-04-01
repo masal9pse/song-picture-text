@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;  // \Adminを追加
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Song;
 
 class HomeController extends Controller
 {
@@ -29,8 +30,11 @@ class HomeController extends Controller
 
  public function store(Request $request)
  {
-  $title = $request->input('title');
-  $detail = $request->input('detail');
-  dd($title, $detail);
+  $song = new Song;
+  $song->title = $request->input('title');
+  $song->detail = $request->input('detail');
+  // dd($song);
+  $song->save();
+  return redirect()->route('admin.create');
  }
 }
