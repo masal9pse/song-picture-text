@@ -2,7 +2,7 @@
 
 return [
 
-    /*
+ /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
     |--------------------------------------------------------------------------
@@ -13,12 +13,12 @@ return [
     |
     */
 
-    'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
-    ],
+ 'defaults' => [
+  'guard' => 'user',
+  'passwords' => 'users',
+ ],
 
-    /*
+ /*
     |--------------------------------------------------------------------------
     | Authentication Guards
     |--------------------------------------------------------------------------
@@ -35,19 +35,27 @@ return [
     |
     */
 
-    'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+ 'guards' => [
+  'web' => [
+   'driver' => 'session',
+   'provider' => 'users',
+  ],
 
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
-        ],
-    ],
+  'api' => [
+   'driver' => 'token',
+   'provider' => 'users',
+  ],
+  'user' => [
+   'driver' => 'session',
+   'provider' => 'users'
+  ],
+  'admin' => [
+   'driver' => 'session',
+   'provider' => 'admins',
+  ]
+ ],
 
-    /*
+ /*
     |--------------------------------------------------------------------------
     | User Providers
     |--------------------------------------------------------------------------
@@ -64,19 +72,23 @@ return [
     |
     */
 
-    'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
+ 'providers' => [
+  'users' => [
+   'driver' => 'eloquent',
+   'model' => App\Models\User::class,
+  ],
+  'admins' => [
+   'driver' => 'eloquent',
+   'model' => App\Admin::class,
+  ]
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
-    ],
+  // 'users' => [
+  //     'driver' => 'database',
+  //     'table' => 'users',
+  // ],
+ ],
 
-    /*
+ /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
     |--------------------------------------------------------------------------
@@ -91,12 +103,17 @@ return [
     |
     */
 
-    'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
-            'expire' => 60,
-        ],
-    ],
+ 'passwords' => [
+  'users' => [
+   'provider' => 'users',
+   'table' => 'password_resets',
+   'expire' => 60,
+  ],
+  'admins' => [
+   'provider' => 'admins',
+   'table' => 'password_resets',
+   'expire' => 60,
+  ],
+ ],
 
 ];
