@@ -22,8 +22,15 @@ class HomeController extends Controller
   *
   * @return \Illuminate\Http\Response
   */
- public function index()
+ public function create()
  {
   return view('admin.create');
+ }
+
+ public function store(Request $request)
+ {
+  $title = $request->input('title');
+  $detail = $request->input('detail');
+  dd($title, $detail);
  }
 }
