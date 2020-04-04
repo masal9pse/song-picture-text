@@ -17,7 +17,7 @@ class LoginTest extends DuskTestCase
   *@test
   * @return void
   */
- public function testExample()
+ public function LoginExample()
  {
 
   DB::table('users')->truncate(); // データ全削除

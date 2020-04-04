@@ -7,7 +7,7 @@ use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ExampleTest extends DuskTestCase
+class TopPageTest extends DuskTestCase
 {
  use RefreshDatabase;
  /**
