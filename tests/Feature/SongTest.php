@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\User;
 
 class SongTest extends TestCase
 {
@@ -21,16 +22,21 @@ class SongTest extends TestCase
   $response->assertStatus(200);
  }
 
- public function testBasicSong()
+ public function testBasicExample()
  {
   $response = $this->withHeaders([
    'X-Header' => 'Value',
-  ])->json('POST', '/user', ['name' => 'Sally']);
+  ])->json('POST', '/user ', ['name' => 'admin']);
 
   $response
    ->assertStatus(200)
    ->assertJson([
-    'created' => true
+    'created' => true,
    ]);
+ }
+
+ public function testApplication()
+ {
+  $user = factory(User::class)->create();
  }
 }

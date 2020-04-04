@@ -23,9 +23,14 @@ class HomeController extends Controller
   *
   * @return \Illuminate\Http\Response
   */
- public function create()
+ public function create(Song $songs)
  {
-  return view('admin.create');
+  // dd($songs);
+  $songs = $songs::all();
+  // dd($songs);
+  return view('admin.create', [
+   'songs' => $songs
+  ]);
  }
 
  public function store(Request $request)

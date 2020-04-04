@@ -22,8 +22,16 @@
       {{-- <input type="text" name="detail" class="mb-3"> --}}
       <textarea name="detail" class="mt-5"></textarea>
       <br>
-      <input type="submit" value="登録する" class="btn btn-info mt-5">
+      <input type="submit" value="登録する" class="btn btn-info">
      </form>
+     @foreach ($songs as $song)
+     <p class="mt-3">
+      {{ $song->title }}
+     </p>
+     {{-- <p>
+      {{ $song->detail }}
+     </p> --}}
+     @endforeach
     </div>
    </div>
   </div>
