@@ -27,18 +27,19 @@ class AuthenticationTest extends TestCase
  public function testLogin(): void
  {
   // 作成したテストユーザのemailとpasswordで認証リクエスト
-  $response = $this->json('POST', route('login'), [
+  $response = $this->get(route('login'), [
    'email' => $this->user->email,
    'password' => 'password',
   ]);
 
-  // 正しいレスポンスが返り、ユーザ名が取得できることを確認
+  // // 正しいレスポンスが返り、ユーザ名が取得できることを確認
   $response
    ->assertStatus(200)
-   ->assertJson(['name' => $this->user->name]);
+   ->put(['name' => $this->user->name]);
 
   // 指定したユーザーが認証されていることを確認
   $this->assertAuthenticatedAs($this->user);
+  $response->content();
  }
 
  /**

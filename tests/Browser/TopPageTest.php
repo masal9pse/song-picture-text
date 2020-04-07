@@ -19,7 +19,7 @@ class TopPageTest extends DuskTestCase
  {
   $this->browse(function (Browser $browser) {
    $browser->visit('/')
-    ->assertDontSee('愛を込めて花束を');
+    ->assertSee('Laravel');
   });
  }
 }
