@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class ExampleTest extends TestCase
 {
@@ -39,5 +41,22 @@ class ExampleTest extends TestCase
   // ->assertJson([
   //  'created' => true,
   // ]);
+ }
+
+ public function testApplication()
+ {
+  $user = factory(User::class)->create();
+
+  $data = [
+   'name' => 'testUser',
+   'email' => 'dummy@email.com',
+   'password' => 'test1234',
+   'password_confirmation' => 'test1234'
+  ];
+
+  $this->actingAs($user)
+   ->withSession($data)
+   ->get('/');
+  // dd($response);
  }
 }
