@@ -43,20 +43,20 @@ class ExampleTest extends TestCase
   // ]);
  }
 
- public function testApplication()
- {
-  $user = factory(User::class)->create();
+ // public function testApplication()
+ // {
+ //  $user = factory(User::class)->create();
 
-  $data = [
-   'name' => 'testUser',
-   'email' => 'dummy@email.com',
-   'password' => 'test1234',
-   'password_confirmation' => 'test1234'
-  ];
+ //  $data = [
+ //   'name' => 'testUser',
+ //   'email' => 'dummy@email.com',
+ //   'password' => 'test1234',
+ //   'password_confirmation' => 'test1234'
+ //  ];
 
-  $this->actingAs($user)
-   ->withSession($data)
-   ->get('/');
-  // dd($response);
- }
+ //  $this->actingAs($user)
+ //   ->withSession($data)
+ //   ->get('/');
+ //  // dd($response);
+ // }
 }

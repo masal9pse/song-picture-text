@@ -11,6 +11,14 @@
       {{ session('status') }}
      </div>
      @endif
+     <div class="panel-heading">タスクを追加する</div>
+     @if($errors->any())
+     <div class="alert alert-danger">
+      @foreach($errors->all() as $message)
+      <p>{{ $message }}</p>
+      @endforeach
+     </div>
+     @endif
 
      createです
      <form action="{{ route('admin.store')}}" method="post">
@@ -19,7 +27,6 @@
       <input type="text" name="title">
       <br>
       歌詞
-      {{-- <input type="text" name="detail" class="mb-3"> --}}
       <textarea name="detail" class="mt-5"></textarea>
       <br>
       <input type="submit" value="登録する" class="btn btn-info">
@@ -28,9 +35,6 @@
      <p class="mt-3">
       {{ $song->title }}
      </p>
-     {{-- <p>
-      {{ $song->detail }}
-     </p> --}}
      @endforeach
     </div>
    </div>

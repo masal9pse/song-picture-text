@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;  // \Adminを追加
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Song;
+use App\Http\Requests\CreateSongTask;
 
 class HomeController extends Controller
 {
@@ -33,7 +34,7 @@ class HomeController extends Controller
   ]);
  }
 
- public function store(Request $request)
+ public function store(CreateSongTask $request)
  {
   $song = new Song;
   $song->title = $request->input('title');
