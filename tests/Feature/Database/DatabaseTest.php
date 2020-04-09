@@ -10,7 +10,7 @@ use App\Book;
 
 class DatabaseTest extends TestCase
 {
- // use RefreshDatabase;
+ use RefreshDatabase;
  /**
   * A basic test example.
   *
@@ -40,8 +40,22 @@ class DatabaseTest extends TestCase
  public function testDatabase2()
  {
   $book = [
-   'title' => 'hoge'
+   'title' => 'hoge',
+   'author' => 'hanako'
   ];
+
+  factory(Book::class)->create($book);
   $this->assertDatabaseHas('books', $book);
+ }
+
+ public function testDatabase3()
+ {
+  $books = factory(Book::class)->create();
+  // $bookCount = isset($books) == 3; // ok
+  $bookCount = !empty($books) === 3; // oke
+  // if (is_array($books)) {
+  //  count($books) == 3;
+  // } // error
+  $this->assertTrue($bookCount);
  }
 }
