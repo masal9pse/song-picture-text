@@ -19,14 +19,14 @@ class DatabaseSongTest extends TestCase
  public function testSongDatabase1()
  {
   $this->assertTrue(
-   Schema::hasColumns('books', [
-    'id', 'title', 'author'
+   Schema::hasColumns('songs', [
+    'id', 'title', 'detail'
    ]),
    // 1
   );
  }
 
- public function testSongDatabase2()
+ public function testCreateSongDatabase()
  {
   $song = new Song();
   $song->title = 'test1';
@@ -36,7 +36,7 @@ class DatabaseSongTest extends TestCase
   $this->assertTrue($saveSong);
  }
 
- public function testSongDatabase3()
+ public function testSongDataInsert()
  {
   $song = [
    'title' => 'test1',
