@@ -20,9 +20,13 @@ class TaskTest extends TestCase
  {
   $response = $this->post('/admin/store', [
    'title' => 'Sample task',
-   'detail' => 'test', // 不正なデータ（数値）
+   'detail' => 111, // 不正なデータ（数値）
   ]);
-  $this->assertTrue($response);
+  // $this->assertTrue($response);
+
+  $response->assertSessionHasErrors([
+   'detail' => '期限日 には日付を入力してください。',
+  ]);
  }
  // public function 
 }

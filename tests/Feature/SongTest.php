@@ -24,19 +24,29 @@ class SongTest extends TestCase
 
  public function testBasicExample()
  {
+  // $response = $this->withHeaders([
+  //  'X-Header' => 'Value',
+  // ])->json('POST', '/user ', ['name' => 'admin']);
+
+  $data = [
+   'name' => 'testUser',
+   'email' => 'dummy@email.com',
+   'password' => 'test1234',
+   'password_confirmation' => 'test1234'
+  ];
   $response = $this->withHeaders([
    'X-Header' => 'Value',
-  ])->json('POST', '/user ', ['name' => 'admin']);
+  ])->json('POST', route('register'), $data);
 
   $response
-   ->assertStatus(200)
-   ->assertJson([
-    'created' => true,
-   ]);
+   ->assertStatus(302);
+  // ->assertJson([
+  //  'created' => true,
+  // ]);
  }
 
- public function testApplication()
- {
-  $user = factory(User::class)->create();
- }
+ // public function testApplication()
+ // {
+ //  $user = factory(User::class)->create();
+ // }
 }
