@@ -44,11 +44,15 @@ class SongController extends Controller
   return redirect()->route('admin.create');
  }
 
- public function show(Song $song)
+ public function show($id)
  {
-  // $song = $song::all();
+  // dd($id);
+  // $song = new Song;
+  $song = Song::find($id);
   // dd($song);
-  return view('Admin.show', [
+  // $songs = $songs::all();
+  // dd($song);
+  return view('admin.show', [
    'song' => $song
   ]);
  }
