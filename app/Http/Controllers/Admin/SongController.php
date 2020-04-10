@@ -46,6 +46,8 @@ class SongController extends Controller
 
  public function show(Song $song)
  {
+  // $song = $song::all();
+  // dd($song);
   return view('Admin.show', [
    'song' => $song
   ]);
