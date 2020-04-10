@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Song;
 use App\Http\Requests\CreateSongTask;
 
-class HomeController extends Controller
+class SongController extends Controller
 {
  /**
   * Create a new controller instance.

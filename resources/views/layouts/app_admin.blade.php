@@ -44,7 +44,7 @@
      <!-- Branding Image -->
      <a class="navbar-brand" href="{{ url('/') }}">
       {{-- {{ config('app.name', 'Laravel') }} --}}
-      歌詞共有サイト
+      歌詞共有サイト管理画面
      </a>
     </div>
 
