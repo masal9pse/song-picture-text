@@ -43,4 +43,17 @@ class SongController extends Controller
   $song->save();
   return redirect()->route('admin.create');
  }
+
+ public function show($id)
+ {
+  // dd($id);
+  // $song = new Song;
+  $song = Song::find($id);
+  // dd($song);
+  // $songs = $songs::all();
+  // dd($song);
+  return view('admin.show', [
+   'song' => $song
+  ]);
+ }
 }

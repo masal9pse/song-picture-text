@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Admin;
+use App\Models\Song;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -24,10 +26,6 @@ class SongTest extends TestCase
 
  public function testBasicExample()
  {
-  // $response = $this->withHeaders([
-  //  'X-Header' => 'Value',
-  // ])->json('POST', '/user ', ['name' => 'admin']);
-
   $data = [
    'name' => 'testUser',
    'email' => 'dummy@email.com',
@@ -44,9 +42,48 @@ class SongTest extends TestCase
   //  'created' => true,
   // ]);
  }
+ /**
+  * @test
+  */
+ public function 管理画面の詳細機能で適切な表示がされているかどうか()
+ {
+  $admin = factory(Admin::class)->create();
 
- // public function testApplication()
+  $response = $this->actingAs($admin)
+   ->get('/admin/show/{id}');
+
+  $response->assertStatus(302);
+ }
+ /**
+  * @test
+  */
+ // public function 管理画面の詳細機能で適切な表示がされているかどうか()
  // {
- //  $user = factory(User::class)->create();
+ //  // $this->withoutExceptionHandling();
+ //  $song = new Song;
+ //  $song = Song::find($song->id);
+
+ //  // $song = factory(Song::class)->create();
+ //  $this->get(route('admin.show', ['id' => $song->id]))
+ //   ->assertStatus(200)
+ //   ->assertSee($song->detail)
+ //   ->assertSee('歌詞共有サイト管理画面');
+ // }
+ /**
+  * @test
+  */
+ // public function 管理画面の詳細機能で適切な表示がされているかどうか()
+ // {
+ //  $this->withoutExceptionHandling();
+
+ //  $admin = factory(Admin::class)->create();
+ //  $song = factory(Song::class)->create();
+ //  // $product = factory(Product::class)->create();
+ //  $admin->actingAs($admin);
+ //  $this->get(route('admin.show', ['id' => $song->id]))
+ //   // ->actingAs($admin)
+ //   ->assertStatus(200)
+ //   ->assertSee($song->detail)
+ //   ->assertSee('歌詞共有サイト管理画面');
  // }
 }

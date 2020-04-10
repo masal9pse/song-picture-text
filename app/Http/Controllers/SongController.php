@@ -16,7 +16,7 @@ class SongController extends Controller
  {
   $songs = Song::all();
   // dd($songs);
-  return view('songs.index',[
+  return view('songs.index', [
    'songs' => $songs
   ]);
  }
@@ -50,7 +50,8 @@ class SongController extends Controller
   */
  public function show(Song $song)
  {
-  return view('songs.show',[
+  // dd($song);
+  return view('songs.show', [
    'song' => $song
   ]);
  }

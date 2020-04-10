@@ -33,7 +33,10 @@
      </form>
      @foreach ($songs as $song)
      <p class="mt-3">
-      {{ $song->title }}
+      {{-- {{ $song->title }} --}}
+      <a href="{{ route('admin.show',['id' => $song->id]) }}">
+       {{ $song->title }}
+      </a>
      </p>
      @endforeach
     </div>

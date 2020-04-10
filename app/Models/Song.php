@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Admin;
 
 class Song extends Model
 {
@@ -10,8 +11,8 @@ class Song extends Model
   'title', 'detail'
  ];
 
- // public function createSong($title, $detail)
- // {
- //  return 
- // }
+ public function admin()
+ {
+  return $this->belongsTo('App\Admin');
+ }
 }
