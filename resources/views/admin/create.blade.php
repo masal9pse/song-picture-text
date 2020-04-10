@@ -37,6 +37,10 @@
       <a href="{{ route('admin.show',['id' => $song->id]) }}">
        {{ $song->title }}
       </a>
+      <form action="{{ route('admin.destroy',['id' => $song->id]) }}" class="mt-3" method="POST">
+       {{ csrf_field() }}
+       <button class="btn btn-danger">削除</button>
+      </form>
      </p>
      @endforeach
     </div>

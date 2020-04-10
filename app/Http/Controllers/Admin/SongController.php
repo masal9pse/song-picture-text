@@ -56,4 +56,13 @@ class SongController extends Controller
    'song' => $song
   ]);
  }
+
+ public function destroy($id)
+ {
+  $song = Song::find($id);
+  // dd($song);
+  $song->delete();
+
+  return redirect()->route('admin.create');
+ }
 }
