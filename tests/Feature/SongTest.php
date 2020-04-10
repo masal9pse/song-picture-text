@@ -26,10 +26,6 @@ class SongTest extends TestCase
 
  public function testBasicExample()
  {
-  // $response = $this->withHeaders([
-  //  'X-Header' => 'Value',
-  // ])->json('POST', '/user ', ['name' => 'admin']);
-
   $data = [
    'name' => 'testUser',
    'email' => 'dummy@email.com',

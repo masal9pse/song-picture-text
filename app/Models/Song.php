@@ -3,15 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Admin;
 
 class Song extends Model
 {
  protected $fillable = [
-  'id', 'title', 'detail'
+  'title', 'detail'
  ];
 
- // public function createSong($title, $detail)
- // {
- //  return 
- // }
+ public function admin()
+ {
+  return $this->belongsTo('App\Admin');
+ }
 }
