@@ -116,5 +116,7 @@ class SongsTableSeeder extends Seeder
    
    いつまでもそばにいて',
   ]);
+
+  factory(App\Models\Song::class, 50)->create();
  }
 }
