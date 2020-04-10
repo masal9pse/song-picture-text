@@ -43,4 +43,11 @@ class SongController extends Controller
   $song->save();
   return redirect()->route('admin.create');
  }
+
+ public function show(Song $song)
+ {
+  return view('Admin.show', [
+   'song' => $song
+  ]);
+ }
 }
