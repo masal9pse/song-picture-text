@@ -47,5 +47,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
  Route::get('create', 'Admin\SongController@create')->name('admin.create');
  Route::get('show/{id}', 'Admin\SongController@show')->name('admin.show');
  Route::post('store', 'Admin\SongController@store')->name('admin.store');
+ Route::get('edit/{id}', 'Admin\SongController@edit')->name('admin.edit');
  Route::post('destroy/{id}', 'Admin\SongController@destroy')->name('admin.destroy');
 });

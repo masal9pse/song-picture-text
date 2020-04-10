@@ -57,6 +57,13 @@ class SongController extends Controller
   ]);
  }
 
+ public function edit($id)
+ {
+  $song = Song::find($id);
+
+  return view('admin.edit', compact('song'));
+ }
+
  public function destroy($id)
  {
   $song = Song::find($id);
