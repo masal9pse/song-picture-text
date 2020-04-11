@@ -18,7 +18,8 @@ class SongController extends Controller
   // $songs = Song::all();
   $songs = DB::table('songs')
    ->select('id', 'title', 'detail')
-   ->get();
+   ->orderBy('created_at', 'asc')
+   ->paginate(10);
   // dd($songs);
   return view('songs.index', [
    'songs' => $songs
