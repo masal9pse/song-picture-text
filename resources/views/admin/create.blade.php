@@ -11,6 +11,10 @@
       {{ session('status') }}
      </div>
      @endif
+     <form method="GET" action="{{ route('admin.create') }}" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" name="search" type="search" placeholder="検索" aria-label="Search">
+      <button class="btn btn-success my-2 my-sm-0" type="submit">検索する</button>
+     </form>
      <div class="panel-heading">タスクを追加する</div>
      @if($errors->any())
      <div class="alert alert-danger">
