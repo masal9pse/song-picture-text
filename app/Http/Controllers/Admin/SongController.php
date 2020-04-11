@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Song;
 use App\Http\Requests\CreateSongTask;
+use Illuminate\Support\Facades\DB;
 
 class SongController extends Controller
 {
@@ -26,8 +27,10 @@ class SongController extends Controller
   */
  public function create(Song $songs)
  {
-  // dd($songs);
-  $songs = $songs::all();
+  $songs = DB::table('songs')
+   ->select('id', 'title', 'detail', 'created_at')
+   ->orderBy('created_at', 'desc')
+   ->paginate(10);
   // dd($songs);
   return view('admin.create', [
    'songs' => $songs
