@@ -15,7 +15,7 @@
      @endif
 
      editです
-     <form action="" method="post">
+     <form action="{{ route('admin.update',['id' => $song->id] )}}" method="post">
       {{ csrf_field() }}
       タイトル
       <input type="text" name="title" value="{{ $song->title }}">

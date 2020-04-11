@@ -15,6 +15,8 @@
 //  return view('welcome');
 // });
 
+// use Illuminate\Routing\Route;
+
 Route::get('/', 'SongController@index');
 Route::resource('/songs', 'SongController');
 Auth::routes();
@@ -49,4 +51,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
  Route::post('store', 'Admin\SongController@store')->name('admin.store');
  Route::get('edit/{id}', 'Admin\SongController@edit')->name('admin.edit');
  Route::post('destroy/{id}', 'Admin\SongController@destroy')->name('admin.destroy');
+ Route::post('update/{id}', 'Admin\SongController@update')->name('admin.update');
 });

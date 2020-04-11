@@ -64,6 +64,19 @@ class SongController extends Controller
   return view('admin.edit', compact('song'));
  }
 
+ public function update(Request $request, $id)
+ {
+  $song = Song::find($id);
+
+  $song->title = $request->input('title');
+  $song->detail = $request->input('detail');
+
+  // dd($song); // エラー
+  $song->save();
+  // dd($song);
+  return redirect()->route('admin.create');
+ }
+
  public function destroy($id)
  {
   $song = Song::find($id);
