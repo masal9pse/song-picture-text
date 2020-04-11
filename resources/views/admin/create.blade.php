@@ -49,6 +49,7 @@
      </p>
      @endforeach
     </div>
+    {{ $songs->links() }}
    </div>
   </div>
  </div>
