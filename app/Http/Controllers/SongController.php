@@ -32,7 +32,7 @@ class SongController extends Controller
   }
 
   $query->select('id', 'title', 'detail', 'created_at');
-  $query->orderBy('created_at', 'asc');
+  $query->orderBy('created_at', 'desc');
   $songs = $query->paginate(10);
 
   return view('songs.index', compact('songs'));
