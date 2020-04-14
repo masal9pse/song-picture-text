@@ -58,7 +58,9 @@ class SongController extends Controller
   $song = new Song;
   $song->title = $request->input('title');
   $song->detail = $request->input('detail');
-  $song->file_name = $request->file('image_file')->store('public/img');
+  if ($request->file('image_file')) {
+   $song->file_name = $request->file('image_file')->store('public/img');
+  }
 
   $song->file_name = basename($song->file_name);
   // dd($song);

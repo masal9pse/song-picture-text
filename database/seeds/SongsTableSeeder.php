@@ -11,7 +11,7 @@ class SongsTableSeeder extends Seeder
   */
  public function run()
  {
-  DB::table('songs')->truncate();
+  DB::table('songs')->truncate(); //一度入れたDBの値を固定する
   DB::table('songs')->insert([
    'title' => 'ハレ晴レユカイ',
    'detail' => 'ナゾナゾみたいに地球儀を解き明かしたら
@@ -65,7 +65,8 @@ class SongsTableSeeder extends Seeder
    嬉しさを集めよう
    カンタンなんだよ　こ・ん・な・の
    追いかけてね　つかまえてみて
-   おおきな夢＆夢　スキでしょう？'
+   おおきな夢＆夢　スキでしょう？',
+   'file_name' => ''
   ]);
 
   DB::table('songs')->insert([
@@ -115,6 +116,7 @@ class SongsTableSeeder extends Seeder
    本当の私を
    
    いつまでもそばにいて',
+   'file_name' => ''
   ]);
 
   factory(App\Models\Song::class, 50)->create();
