@@ -25,7 +25,7 @@
      @endif
 
      createです
-     <form action="{{ route('admin.store')}}" method="post">
+     <form action="{{ route('admin.store')}}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       　タイトル
       <input type="text" name="title">
@@ -33,6 +33,7 @@
       歌詞
       <textarea name="detail" class="mt-5"></textarea>
       <br>
+      <input type="file" class="form-control" name="image_file">
       <input type="submit" value="登録する" class="btn btn-info">
      </form>
      @foreach ($songs as $song)
