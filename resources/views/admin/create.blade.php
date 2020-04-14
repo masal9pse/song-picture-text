@@ -11,9 +11,13 @@
       {{ session('status') }}
      </div>
      @endif
-     <form method="GET" action="{{ route('admin.create') }}" class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" name="search" type="search" placeholder="検索" aria-label="Search">
-      <button class="btn btn-success my-2 my-sm-0" type="submit">検索する</button>
+     @if ($message = Session::get('success'))
+     <p class="text-primary">{{ $message }}</p>
+     @endif
+     {{-- <form method="GET" action="{{ route('admin.create') }}" class="form-inline my-2 my-lg-0"> --}}
+     {{ Form::open(['method' => 'get'],['route' => 'admin.create'],['class' => "form-inline my-2 my-lg-0"]) }}
+     <input class="form-control mr-sm-2" name="search" type="search" placeholder="検索" aria-label="Search">
+     <button class="btn btn-success my-2 my-sm-0" type="submit">検索する</button>
      </form>
      <div class="panel-heading">タスクを追加する</div>
      @if($errors->any())
@@ -25,6 +29,7 @@
      @endif
 
      createです
+     {{-- {{Form::open(['method' => 'post'],['route' => 'admin.store'],['files' => true])}} --}}
      <form action="{{ route('admin.store')}}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       　タイトル
@@ -36,16 +41,18 @@
       <input type="file" class="form-control" name="image_file">
       <input type="submit" value="登録する" class="btn btn-info">
      </form>
+     {{-- {{Form::close()}} --}}
      @foreach ($songs as $song)
      <p class="mt-3">
-      {{-- {{ $song->title }} --}}
       <a href="{{ route('admin.show',['id' => $song->id]) }}">
        {{ $song->title }}
       </a>
-      <form action="{{ route('admin.destroy',['id' => $song->id]) }}" class="mt-3" method="POST">
-       {{ csrf_field() }}
-       <button class="btn btn-danger">削除</button>
-      </form>
+      {{-- <form action="{{ route('admin.destroy',['id' => $song->id]) }}" class="mt-3" method="POST">
+      {{ csrf_field() }} --}}
+      {{Form::model($song, ['route' => ['admin.destroy', $song->id]])}}
+      <button class="btn btn-danger">削除</button>
+      {{-- </form> --}}
+      {{Form::close()}}
 
       <form action="{{ route('admin.edit',['id' => $song->id]) }}" class="mt-3" method="GET">
        {{ csrf_field() }}
