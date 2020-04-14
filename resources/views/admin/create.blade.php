@@ -14,11 +14,11 @@
      @if ($message = Session::get('success'))
      <p class="text-primary">{{ $message }}</p>
      @endif
-     {{-- <form method="GET" action="{{ route('admin.create') }}" class="form-inline my-2 my-lg-0"> --}}
      {{ Form::open(['method' => 'get'],['route' => 'admin.create'],['class' => "form-inline my-2 my-lg-0"]) }}
      <input class="form-control mr-sm-2" name="search" type="search" placeholder="検索" aria-label="Search">
      <button class="btn btn-success my-2 my-sm-0" type="submit">検索する</button>
-     </form>
+     {{Form::close()}}
+
      <div class="panel-heading">タスクを追加する</div>
      @if($errors->any())
      <div class="alert alert-danger">
@@ -47,11 +47,8 @@
       <a href="{{ route('admin.show',['id' => $song->id]) }}">
        {{ $song->title }}
       </a>
-      {{-- <form action="{{ route('admin.destroy',['id' => $song->id]) }}" class="mt-3" method="POST">
-      {{ csrf_field() }} --}}
       {{Form::model($song, ['route' => ['admin.destroy', $song->id]])}}
       <button class="btn btn-danger">削除</button>
-      {{-- </form> --}}
       {{Form::close()}}
 
       {{-- {{Form::model($song, ['route' => ['admin.destroy', $song->id]])}} --}}
