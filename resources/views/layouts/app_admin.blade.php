@@ -42,7 +42,8 @@
      </button>
 
      <!-- Branding Image -->
-     <a class="navbar-brand" href="{{ url('/') }}">
+     {{-- <a class="navbar-brand" href="{{ url('/') }}"> --}}
+     <a class="navbar-brand" href="{{ route('admin.create') }}">
       {{-- {{ config('app.name', 'Laravel') }} --}}
       歌詞共有サイト管理画面
      </a>
