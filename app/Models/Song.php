@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Admin;
 
 class Song extends Model
 {
  protected $fillable = [
-  'title', 'detail'
+  'title', 'detail', 'file_name'
  ];
 
  public function admin()

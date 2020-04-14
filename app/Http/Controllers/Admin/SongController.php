@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Song;
 use App\Http\Requests\CreateSongTask;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class SongController extends Controller
 {
@@ -43,8 +44,8 @@ class SongController extends Controller
    }
   }
 
-  $query->select('id', 'title', 'detail', 'created_at');
-  $query->orderBy('created_at', 'asc');
+  $query->select('id', 'title', 'detail', 'file_name', 'created_at');
+  $query->orderBy('created_at', 'desc');
   $songs = $query->paginate(10);
 
   return view('admin.create', [
@@ -57,19 +58,20 @@ class SongController extends Controller
   $song = new Song;
   $song->title = $request->input('title');
   $song->detail = $request->input('detail');
+  $song->file_name = $request->file('image_file')->store('public/img');
+
+  $song->file_name = basename($song->file_name);
   // dd($song);
+  // Song::create(['file_name' => basename($song->file_name)]);
+
   $song->save();
-  return redirect()->route('admin.create');
+  return redirect()->route('admin.create')->with(['success' => 'ファイルを保存しました']);;
  }
 
  public function show($id)
  {
-  // dd($id);
-  // $song = new Song;
   $song = Song::find($id);
-  // dd($song);
-  // $songs = $songs::all();
-  // dd($song);
+
   return view('admin.show', [
    'song' => $song
   ]);
