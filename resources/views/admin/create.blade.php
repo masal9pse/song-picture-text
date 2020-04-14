@@ -51,7 +51,7 @@
       <button class="btn btn-danger">削除</button>
       {{Form::close()}}
 
-      {{-- {{Form::model($song, ['route' => ['admin.destroy', $song->id]])}} --}}
+      {{-- {{Form::model($song, ['route' => ['admin.edit', $song->id]])}} --}}
       <form action="{{ route('admin.edit',['id' => $song->id]) }}" class="mt-3" method="GET">
        {{ csrf_field() }}
        <button class="btn btn-success">更新</button>
