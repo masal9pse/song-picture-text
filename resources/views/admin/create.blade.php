@@ -54,10 +54,12 @@
       {{-- </form> --}}
       {{Form::close()}}
 
+      {{-- {{Form::model($song, ['route' => ['admin.destroy', $song->id]])}} --}}
       <form action="{{ route('admin.edit',['id' => $song->id]) }}" class="mt-3" method="GET">
        {{ csrf_field() }}
        <button class="btn btn-success">更新</button>
       </form>
+      {{-- {{Form::close()}} --}}
      </p>
      @endforeach
     </div>
