@@ -58,8 +58,8 @@ class SongController extends Controller
   $song = new Song;
   $song->title = $request->input('title');
   $song->detail = $request->input('detail');
-  if ($request->file('image_file')) {
-   $song->file_name = $request->file('image_file')->store('public/img');
+  if ($request->file('file_name')) {
+   $song->file_name = $request->file('file_name')->store('public/img');
   }
 
   $song->file_name = basename($song->file_name);
@@ -86,13 +86,18 @@ class SongController extends Controller
   return view('admin.edit', compact('song'));
  }
 
- public function update(Request $request, $id)
+ public function update(CreateSongTask $request, $id)
  {
   $song = Song::find($id);
 
   $song->title = $request->input('title');
   $song->detail = $request->input('detail');
+  // ここから画像編集機能
+  if ($request->file('file_name')) {
+   $song->file_name = $request->file('file_name')->store('public/img');
+  }
 
+  $song->file_name = basename($song->file_name);
   $song->save();
   // dd($song);
   return redirect()->route('admin.create');
