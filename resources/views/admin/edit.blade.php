@@ -21,13 +21,15 @@
      </div>
      @endif
      editです
-     <form action="{{ route('admin.update',['id' => $song->id] )}}" method="post">
+     <form action="{{ route('admin.update',['id' => $song->id] )}}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       タイトル
       <input type="text" name="title" value="{{ $song->title }}">
       <br>
       歌詞
       <textarea name="detail">{{ $song->detail }}</textarea>
+      {{-- <input type="file" class="form-control" name="file_name" src="{{ asset('/storage/img/'.$song->file_name) }}">
+      --}}
       <input type="file" class="form-control" name="file_name">
       <input type="submit" value="更新する" class="btn btn-info">
     </div>
