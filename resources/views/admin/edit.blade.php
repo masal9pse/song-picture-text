@@ -13,7 +13,13 @@
       {{ session('status') }}
      </div>
      @endif
-
+     @if($errors->any())
+     <div class="alert alert-danger">
+      @foreach($errors->all() as $message)
+      <p>{{ $message }}</p>
+      @endforeach
+     </div>
+     @endif
      editです
      <form action="{{ route('admin.update',['id' => $song->id] )}}" method="post">
       {{ csrf_field() }}
@@ -22,6 +28,7 @@
       <br>
       歌詞
       <textarea name="detail">{{ $song->detail }}</textarea>
+      <input type="file" class="form-control" name="file_name">
       <input type="submit" value="更新する" class="btn btn-info">
     </div>
     </form>

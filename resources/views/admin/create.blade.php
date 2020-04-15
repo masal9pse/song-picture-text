@@ -38,7 +38,7 @@
       歌詞
       <textarea name="detail" class="mt-5"></textarea>
       <br>
-      <input type="file" class="form-control" name="image_file">
+      <input type="file" class="form-control" name="file_name">
       <input type="submit" value="登録する" class="btn btn-info">
      </form>
      {{-- {{Form::close()}} --}}
