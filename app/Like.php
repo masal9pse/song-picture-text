@@ -12,7 +12,7 @@ class Like extends Model
  use CounterCache;
 
  public $counterCacheOptions = [
-  'Post' => [
+  'Song' => [
    'field' => 'likes_count',
    'foreignKey' => 'song_id'
   ]
@@ -20,7 +20,7 @@ class Like extends Model
 
  protected $fillable = ['user_id', 'song_id'];
 
- public function Post()
+ public function Song()
  {
   return $this->belongsTo(Song::class);
  }

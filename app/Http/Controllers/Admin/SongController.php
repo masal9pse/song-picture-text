@@ -70,23 +70,6 @@ class SongController extends Controller
   return redirect()->route('admin.create')->with(['success' => 'ファイルを保存しました']);;
  }
 
- public function imageStore(Request $request)
- {
-  $request->validate([
-   'image' => 'required|image|mimes:jpg,jpeg,png|max:2000'
-  ]);
-
-  $file = $request->file('image');
-  $fileName = str_random(20) . '.' . $file->getClientOriginalExtension();
-  Image::make($file)->save(public_path('images/' . $fileName));
-
-  $song = new Song;
-  $song->image = $fileName;
-  $song->save();
-
-  return redirect()->back();
- }
-
  public function show($id)
  {
   $song = Song::find($id);

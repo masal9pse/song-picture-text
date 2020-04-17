@@ -11,7 +11,7 @@ class SongsTableSeeder extends Seeder
   */
  public function run()
  {
-  DB::table('songs')->truncate(); //一度入れたDBの値を固定する
+  // DB::table('songs')->truncate(); //一度入れたDBの値を固定する
   DB::table('songs')->insert([
    'title' => 'ハレ晴レユカイ',
    'detail' => 'ナゾナゾみたいに地球儀を解き明かしたら

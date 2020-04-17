@@ -11,21 +11,15 @@
 |
 */
 
-// Route::get('/', function () {
-//  return view('welcome');
-// });
-
-// use Illuminate\Routing\Route;
-
-Route::get('/', 'SongController@index');
-Route::resource('/songs', 'SongController');
-Route::post('/songs/{song}/likes', 'LikesController@store');
-Route::post('/songs/{song}/likes/{like}', 'LikesController@destroy');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth:user'], function () {
+ Route::get('/', 'SongController@index');
+ Route::resource('/songs', 'SongController');
+ Route::post('/songs/{song}/likes', 'LikesController@store');
+ Route::post('/songs/{song}/likes/{like}', 'LikesController@destroy');
  Route::get('/home', 'HomeController@index')->name('home');
 });
 
