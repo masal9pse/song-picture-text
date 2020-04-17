@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Song;
 use App\Http\Requests\CreateSongTask;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class SongController extends Controller
 {
