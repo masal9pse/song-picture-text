@@ -20,6 +20,10 @@
      {{Form::close()}}
 
      <div class="panel-heading">タスクを追加する</div>
+     <form action="{{ url('/') }}" class="mt-3" method="GET">
+      {{ csrf_field() }}
+      <button class="btn btn-primary">トップページに戻る</button>
+     </form>
 
      <div class="form">
 
