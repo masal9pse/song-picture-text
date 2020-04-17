@@ -35,7 +35,9 @@ class SongController extends Controller
   $query->orderBy('created_at', 'desc');
   $songs = $query->paginate(10);
 
-  return view('songs.index', compact('songs'));
+  return view('songs.index', [
+   'songs' => $songs
+  ]);
  }
 
  /**

@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Song;
 use App\Http\Requests\CreateSongTask;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class SongController extends Controller
 {
@@ -68,6 +68,23 @@ class SongController extends Controller
 
   $song->save();
   return redirect()->route('admin.create')->with(['success' => 'ファイルを保存しました']);;
+ }
+
+ public function imageStore(Request $request)
+ {
+  $request->validate([
+   'image' => 'required|image|mimes:jpg,jpeg,png|max:2000'
+  ]);
+
+  $file = $request->file('image');
+  $fileName = str_random(20) . '.' . $file->getClientOriginalExtension();
+  Image::make($file)->save(public_path('images/' . $fileName));
+
+  $song = new Song;
+  $song->image = $fileName;
+  $song->save();
+
+  return redirect()->back();
  }
 
  public function show($id)
