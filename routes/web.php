@@ -11,19 +11,15 @@
 |
 */
 
-// Route::get('/', function () {
-//  return view('welcome');
-// });
-
-// use Illuminate\Routing\Route;
-
-Route::get('/', 'SongController@index');
-Route::resource('/songs', 'SongController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth:user'], function () {
+ Route::get('/', 'SongController@index');
+ Route::resource('/songs', 'SongController');
+ Route::post('/songs/{song}/likes', 'LikesController@store');
+ Route::post('/songs/{song}/likes/{like}', 'LikesController@destroy');
  Route::get('/home', 'HomeController@index')->name('home');
 });
 
@@ -47,6 +43,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
  Route::post('logout', 'Admin\LoginController@logout')->name('admin.logout');
  Route::get('create', 'Admin\SongController@create')->name('admin.create');
+ Route::post('imageStore', 'Admin\SongController@imageStore')->name('admin.imageStore');
  Route::get('show/{id}', 'Admin\SongController@show')->name('admin.show');
  Route::post('store', 'Admin\SongController@store')->name('admin.store');
  Route::get('edit/{id}', 'Admin\SongController@edit')->name('admin.edit');

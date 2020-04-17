@@ -20,6 +20,24 @@
      {{Form::close()}}
 
      <div class="panel-heading">タスクを追加する</div>
+     <form action="{{ url('/') }}" class="mt-3" method="GET">
+      {{ csrf_field() }}
+      <button class="btn btn-primary">トップページに戻る</button>
+     </form>
+
+     <div class="form">
+
+      @if(count($errors)>0)
+      <div class="alert alert-danger">
+       <ul>
+        @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+       </ul>
+      </div>
+      @endif
+
+     </div>
      @if($errors->any())
      <div class="alert alert-danger">
       @foreach($errors->all() as $message)

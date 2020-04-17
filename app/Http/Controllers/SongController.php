@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class SongController extends Controller
 {
@@ -35,7 +36,9 @@ class SongController extends Controller
   $query->orderBy('created_at', 'desc');
   $songs = $query->paginate(10);
 
-  return view('songs.index', compact('songs'));
+  return view('songs.index', [
+   'songs' => $songs
+  ]);
  }
 
  /**
@@ -65,12 +68,22 @@ class SongController extends Controller
   * @param  \App\Song  $song
   * @return \Illuminate\Http\Response
   */
- public function show(Song $song)
+ public function show($id)
  {
-  // dd($song);
-  return view('songs.show', [
-   'song' => $song
-  ]);
+  $authUser = Auth::user(); // 認証ユーザー取得
+  $song = Song::find($id);
+
+  // 追加
+  $like = $song->likes()->where('user_id', \Auth::user()->id)->first();
+
+  $params = [
+   'authUser' => $authUser,
+   'song' => $song,
+
+   // 追加
+   'like' => $like,
+  ];
+  return view('songs.show', $params);
  }
 
  /**
