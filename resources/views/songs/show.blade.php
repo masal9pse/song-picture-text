@@ -19,10 +19,25 @@
 @else
 <!-- いいねフォーム -->
 {{ Form::model($song, array('action' => array('LikesController@store', $song->id))) }}
-<button type="submit">
+<button type="submit" class="p-3">
  + いいね {{ $song->likes_count }}
 </button>
 {!! Form::close() !!}
 @endif
 @endif
+
+<div class="p-3">
+ <div class="card-title">コメント一覧</div>
+ @foreach ($song->comments as $comment)
+ <div class="card">
+  <p class="card-text">
+   登録者:{{ $comment->user->name }}
+  </p>
+  <div class="card-body">
+   <p class="card-text">{{ $comment->comment }}</p>
+  </div>
+ </div>
+ @endforeach
+ <a href="{{ route('comments.create', ['song_id' => $song->id]) }}" class="btn btn-primary">コメントする</a>
+</div>
 @endsection
