@@ -66,7 +66,7 @@
        {{ $song->title }}
       </a>
       {{Form::model($song, ['route' => ['admin.destroy', $song->id]])}}
-      <button class="btn btn-danger">削除</button>
+      <button onclick="return confirm('本当に削除しますか？')" class="btn btn-danger">削除</button>
       {{Form::close()}}
 
       {{-- {{Form::model($song, ['route' => ['admin.edit', $song->id]])}} --}}
