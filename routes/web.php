@@ -15,8 +15,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/', 'SongController@index');
+
 Route::group(['middleware' => 'auth:user'], function () {
- Route::get('/', 'SongController@index');
  Route::resource('/songs', 'SongController');
  Route::post('/songs/{song}/likes', 'LikesController@store');
  Route::post('/songs/{song}/likes/{like}', 'LikesController@destroy');
