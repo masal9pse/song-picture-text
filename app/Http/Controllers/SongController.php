@@ -59,7 +59,6 @@ class SongController extends Controller
   */
  public function store(Request $request)
  {
-  //
  }
 
  /**
@@ -72,7 +71,8 @@ class SongController extends Controller
  {
   $authUser = Auth::user(); // 認証ユーザー取得
   $song = Song::find($id);
-
+  $song->load('user', 'comments', 'user');
+  // dd($song);
   // 追加
   $like = $song->likes()->where('user_id', \Auth::user()->id)->first();
 

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Admin;
 use App\Like;
+use App\Models\User;
+use App\Comment;
 
 class Song extends Model
 {
@@ -20,6 +22,17 @@ class Song extends Model
  public function likes()
  {
   return $this->hasMany('App\Like');
+ }
+
+
+ public function user()
+ {
+  return $this->belongsTo(User::class, 'user_id');
+ }
+
+ public function comments()
+ {
+  return $this->hasMany(Comment::class, 'song_id', 'id');
  }
 
  public function like_by()
