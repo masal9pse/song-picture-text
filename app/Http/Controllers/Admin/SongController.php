@@ -44,7 +44,7 @@ class SongController extends Controller
    }
   }
 
-  $query->select('id', 'title', 'detail', 'file_name', 'created_at');
+  $query->select('id', 'title', 'detail', 'file_name', 'content', 'created_at');
   $query->orderBy('created_at', 'desc');
   $songs = $query->paginate(10);
 
@@ -58,6 +58,7 @@ class SongController extends Controller
   $song = new Song;
   $song->title = $request->input('title');
   $song->detail = $request->input('detail');
+  $song->content = $request->input('content');
   if ($request->file('file_name')) {
    $song->file_name = $request->file('file_name')->store('public/img');
   }
