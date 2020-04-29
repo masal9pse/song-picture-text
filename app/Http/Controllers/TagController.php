@@ -20,8 +20,9 @@ class TagController extends Controller
  /**
   * @return \Illuminate\View\View
   */
- public function create()
+ public function create(Tag $tag)
  {
+  // dd($tag);
   return view('tags.create');
  }
 
@@ -64,12 +65,11 @@ class TagController extends Controller
  {
   // dd($tag);
   $tag = new Tag;
-  $input = $request->only($tag->getFillable());
-
-  $tag = $tag->create($input);
-  // $tag->save();
+  // $input = $request->only($tag->getFillable());
+  $tag->title = $request->title;
+  $tag->save();
   return redirect()
-   ->route('tags.edit', $tag)
+   ->route('tags.edit', ['id' => $tag->id])
    ->with('status', 'タグを更新しました。');
  }
 

@@ -23,18 +23,14 @@
      editです
      <form action="{{ route('tags.update',['id' => $tag->id] )}}" method="post">
       {{ csrf_field() }}
-      タイトル
-      <input type="text" name="title" value="{{ $tag->title }}">
-      <br>
-      歌詞
-      {{-- <input type="file" class="form-control" name="file_name" src="{{ asset('/storage/img/'.$song->file_name) }}">
-      --}}
-      <input type="submit" value="更新する" class="btn btn-info">
+      @include('tags.fields')
+     </form>
     </div>
-    </form>
    </div>
   </div>
  </div>
-</div>
+ <p class="{{ Request::is('tags', 'tags/*') ? 'active' : '' }}">
+  <a class="nav-link" href="{{ route('tags.index') }}">タグ</a>
+ </p>
 </div>
 @endsection
