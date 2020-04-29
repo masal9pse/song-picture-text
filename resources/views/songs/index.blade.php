@@ -13,6 +13,11 @@
   </a>
  </p>
  @endforeach
+
  {{ $songs->links() }}
+
+ <p class="{{ Request::is('tags', 'tags/*') ? 'active' : '' }}">
+  <a class="nav-link" href="{{ route('tags.index') }}">タグ</a>
+ </p>
 </div>
 @endsection
