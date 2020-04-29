@@ -30,9 +30,6 @@
          <form method="POST" action="{{ route('tags.destroy',['id' => $tag->id]) }}">
           {{ csrf_field() }}
           <input type="submit" value="削除" class="btn btn-danger btn-sm" onclick='return confirm("君は本当に削除するつもりかい？");'>
-          {{-- {{Form::model($tag, ['route' => ['tags.destroy', $tag->id]])}}
-          <button onclick="return confirm('本当に削除しますか？')" class="btn btn-danger">削除</button>
-          {{Form::close()}} --}}
          </form>
         </div>
        </td>

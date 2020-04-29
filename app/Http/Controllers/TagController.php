@@ -60,9 +60,14 @@ class TagController extends Controller
   * @param Tag $tag
   * @return \Illuminate\Http\RedirectResponse
   */
- public function update(TagRequest $request, Tag $tag)
+ public function update(TagRequest $request)
  {
-  $tag->update($request->all());
+  // dd($tag);
+  $tag = new Tag;
+  $input = $request->only($tag->getFillable());
+
+  $tag = $tag->create($input);
+  // $tag->save();
   return redirect()
    ->route('tags.edit', $tag)
    ->with('status', 'タグを更新しました。');

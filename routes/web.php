@@ -20,8 +20,9 @@ Route::get('/', 'SongController@index');
 Route::group(['middleware' => 'auth:user'], function () {
  Route::resource('/songs', 'SongController');
  Route::resource('/comments', 'CommentController');
- Route::resource('/tags', 'TagController', ['except' => ['destroy']]);
+ Route::resource('/tags', 'TagController', ['except' => ['destroy', 'update']]);
  Route::post('/tags/destroy/{id}', 'TagController@destroy')->name('tags.destroy');
+ Route::post('/tags/update/{id}', 'TagController@update')->name('tags.update');
  Route::post('/songs/{song}/likes', 'LikesController@store');
  Route::post('/songs/{song}/likes/{like}', 'LikesController@destroy');
  Route::get('/home', 'HomeController@index')->name('home');
