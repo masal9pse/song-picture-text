@@ -11,7 +11,7 @@ use App\Comment;
 class Song extends Model
 {
  protected $fillable = [
-  'title', 'detail', 'likes_count', 'file_name'
+  'title', 'detail', 'likes_count', 'file_name', 'search'
  ];
 
  // protected $with = ['tags'];

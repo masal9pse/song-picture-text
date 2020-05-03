@@ -17,12 +17,10 @@ class SongController extends Controller
   */
  public function index(Request $request)
  {
-  $songs = new Song;
   $search = $request->input('search');
-  // $query = DB::table('songs');
-  // $songs = Song::orderBy('id', 'desc')->paginate(10);
-  // $songs::all();
-  // ->join('tags', 'songs.id', '=', 'tags.title');
+
+  $songs = Song::query()->with('tags');
+  // dd($songs);
 
   // もしキーワードがあったら
   if ($search !== null) {
@@ -32,18 +30,13 @@ class SongController extends Controller
    // 空白で区切る
    $search_split2 = preg_split('/[\s]+/', $search_split, -1, PREG_SPLIT_NO_EMPTY);
 
-   foreach ($search_split2 as $value) {
-    $songs->where('title', 'like', '%' . $value . '%');
+   foreach ($search_split2 as $search) {
+    $songs->where('title', 'like', '%' . $search . '%');
    }
   }
 
-  // $query->select('id', 'title', 'detail', 'created_at');
-  // $query->orderBy('created_at', 'desc');
   $songs = $songs->orderBy('id', 'desc')->paginate(10);
-  $songs->load('tags');
-  // dd($songs);
 
-  // dd($tags);
   return view('songs.index', [
    'songs' => $songs,
   ]);

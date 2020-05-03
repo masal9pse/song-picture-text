@@ -7,10 +7,10 @@
     <div class="card-header">曲名一覧</div>
     <div class="card-body">
      <div class="mb-3">
-      {{ Form::open(['method' => 'get'],['route' => 'admin.create'],['class' => "form-inline my-2 my-lg-0"]) }}
-      <input class="form-control mr-sm-2" name="search" type="search" placeholder="検索" aria-label="Search">
-      <button class="btn btn-success my-2 my-sm-0" type="submit">検索する</button>
-      {{Form::close()}}
+      <form method="GET" action="{{ route('songs.index') }}" class="form-inline my-2 my-lg-0">
+       <input class="form-control mr-sm-2" name="search" type="search" placeholder="検索" aria-label="Search">
+       <button class="btn btn-success my-2 my-sm-0" type="submit">検索する</button>
+      </form>
      </div>
      <table class="table table-striped">
       <thead>
@@ -24,7 +24,7 @@
       @foreach($songs as $song)
       <tr>
        <td class="align-middle">{{ $song->id }}</td>
-       <td class="align-middle"><a href="{{ $song->detail }}">{{ $song->title }}</a></td>
+       <td class="align-middle"><a href="{{ route('songs.show',$song) }}">{{ $song->title }}</a></td>
        <td class="align-middle">
         @foreach($song->tags as $tag)
         <a href="{{ route('tags.show', $tag->id) }}">{{ $tag->title }}</a>
