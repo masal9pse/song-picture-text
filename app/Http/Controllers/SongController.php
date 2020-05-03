@@ -17,9 +17,9 @@ class SongController extends Controller
   */
  public function index(Request $request)
  {
+  $songs = new Song;
   $search = $request->input('search');
   // $query = DB::table('songs');
-  $songs = new Song;
   // $songs = Song::orderBy('id', 'desc')->paginate(10);
   // $songs::all();
   // ->join('tags', 'songs.id', '=', 'tags.title');
