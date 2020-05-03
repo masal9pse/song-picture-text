@@ -22,9 +22,8 @@ class SongController extends Controller
   $songs = new Song;
   // $songs = Song::orderBy('id', 'desc')->paginate(10);
   // $songs::all();
-  $songs->load('tags');
   // ->join('tags', 'songs.id', '=', 'tags.title');
-  // dd($songs);
+
   // もしキーワードがあったら
   if ($search !== null) {
    // 半角スペースを半角に
@@ -41,6 +40,8 @@ class SongController extends Controller
   // $query->select('id', 'title', 'detail', 'created_at');
   // $query->orderBy('created_at', 'desc');
   $songs = $songs->orderBy('id', 'desc')->paginate(10);
+  $songs->load('tags');
+  // dd($songs);
 
   // dd($tags);
   return view('songs.index', [

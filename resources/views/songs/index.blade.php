@@ -7,28 +7,23 @@
  {{Form::close()}}
 
  @foreach ($songs as $song)
- <p>
-  <a href="{{ route('songs.show',['id' => $song->id]) }}">
-   {{ $song->title }}
-  </a>
- </p>
- <span>
-  @foreach ($song->tags as $tag)
-  <a href="{{ route('tags.show', $tag->id) }}">{{ $tag->title }}</a>
-  @unless($loop->last)
-  ,
-  @endunless
+ <div class="index">
+  <p>
+   <a href="{{ route('songs.show',['id' => $song->id]) }}">
+    {{ $song->title }}
+   </a>
+  </p>
+  <span class="align">
+   @foreach ($song->tags as $tag)
+   <a href="{{ route('tags.show', $tag->id) }}">{{ $tag->title }}</a>
+   @unless($loop->last)
+   ,
+   @endunless
+   @endforeach
+  </span>
   @endforeach
- </span>
- @endforeach
-
- {{-- @foreach ($tags as $tag)
- {{ $tag }}
- @endforeach --}}
-
- {{ $songs->links() }}
-
- <p class="{{ Request::is('tags', 'tags/*') ? 'active' : '' }}">
+ </div>
+ {{ $songs->links() }} <p class="{{ Request::is('tags', 'tags/*') ? 'active' : '' }}">
   <a class="nav-link" href="{{ route('tags.index') }}">タグ</a>
  </p>
 </div>
