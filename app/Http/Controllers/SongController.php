@@ -6,6 +6,7 @@ use App\Models\Song;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Tag;
 
 class SongController extends Controller
 {
@@ -36,8 +37,11 @@ class SongController extends Controller
   $query->orderBy('created_at', 'desc');
   $songs = $query->paginate(10);
 
+  $tags = Tag::pluck('title', 'id')->toArray();
+
   return view('songs.index', [
-   'songs' => $songs
+   'songs' => $songs,
+   'tags' => $tags
   ]);
  }
 

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_admin')
 
 @section('content')
 <div class="container">
@@ -6,6 +6,9 @@
   <div class="col-md-12">
    <div class="card">
     <div class="card-header">タグ一覧</div>
+    <div class="card-header">
+     <a href="{{ route('songs.index') }}" class="btn btn-danger mt-5">トップページ</a>
+    </div>
     <div class="card-body">
      <div class="mb-3">
       <a href="{{ route('tags.create') }}" class="btn btn-primary">新規登録</a>

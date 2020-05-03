@@ -44,7 +44,9 @@ class TagController extends Controller
   */
  public function show(Tag $tag)
  {
-  return view('tags.show', compact('tag'));
+  $songs = $tag->songs()->paginate(20);
+  // dd($songs);
+  return view('tags.show', compact('tag', 'songs'));
  }
 
  /**
@@ -82,7 +84,7 @@ class TagController extends Controller
  {
   $tag = Tag::findOrFail($id);
   $tag->delete($id);
-
+  $tag->songs()->detach();
   return redirect()
    ->route('tags.index')
    ->with('status', 'タグを削除しました。');

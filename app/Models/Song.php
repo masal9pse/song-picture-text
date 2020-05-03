@@ -14,6 +14,8 @@ class Song extends Model
   'title', 'detail', 'likes_count', 'file_name'
  ];
 
+ protected $with = ['tags'];
+
  public function admin()
  {
   return $this->belongsTo(Admin::class);
