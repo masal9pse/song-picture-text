@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Song;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tag;
 
@@ -19,7 +19,8 @@ class SongController extends Controller
  {
   $search = $request->input('search');
   $query = DB::table('songs');
-
+  // ->join('tags', 'songs.id', '=', 'tags.title');
+  dd($query);
   // もしキーワードがあったら
   if ($search !== null) {
    // 半角スペースを半角に
@@ -38,7 +39,7 @@ class SongController extends Controller
   $songs = $query->paginate(10);
 
   $tags = Tag::pluck('title', 'id')->toArray();
-
+  // dd($tags);
   return view('songs.index', [
    'songs' => $songs,
    'tags' => $tags

@@ -12,7 +12,19 @@
    {{ $song->title }}
   </a>
  </p>
+ <p>
+  @foreach ($song->tags as $tag)
+  <a href="{{ route('tags.show', $tag->id) }}">{{ $tag->title }}</a>
+  @unless($loop->last)
+  ,
+  @endunless
+  @endforeach
+ </p>
  @endforeach
+
+ {{-- @foreach ($tags as $tag)
+ {{ $tag }}
+ @endforeach --}}
 
  {{ $songs->links() }}
 
