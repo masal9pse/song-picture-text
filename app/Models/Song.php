@@ -39,4 +39,9 @@ class Song extends Model
  {
   return Like::where('user_id', \Auth::user()->id)->first();
  }
+
+ public function tags()
+ {
+  return $this->belongsToMany(Tag::class);
+ }
 }
