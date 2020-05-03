@@ -12,14 +12,14 @@
    {{ $song->title }}
   </a>
  </p>
- <p>
+ <span>
   @foreach ($song->tags as $tag)
   <a href="{{ route('tags.show', $tag->id) }}">{{ $tag->title }}</a>
   @unless($loop->last)
   ,
   @endunless
   @endforeach
- </p>
+ </span>
  @endforeach
 
  {{-- @foreach ($tags as $tag)

@@ -14,7 +14,7 @@ class Song extends Model
   'title', 'detail', 'likes_count', 'file_name'
  ];
 
- protected $with = ['tags'];
+ // protected $with = ['tags'];
 
  public function admin()
  {
