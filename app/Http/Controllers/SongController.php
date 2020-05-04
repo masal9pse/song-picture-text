@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Song;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Tag;
 
 class SongController extends Controller
 {
@@ -17,7 +18,9 @@ class SongController extends Controller
  public function index(Request $request)
  {
   $search = $request->input('search');
-  $query = DB::table('songs');
+
+  $songs = Song::query()->with('tags');
+  // dd($songs);
 
   // もしキーワードがあったら
   if ($search !== null) {
@@ -27,17 +30,15 @@ class SongController extends Controller
    // 空白で区切る
    $search_split2 = preg_split('/[\s]+/', $search_split, -1, PREG_SPLIT_NO_EMPTY);
 
-   foreach ($search_split2 as $value) {
-    $query->where('title', 'like', '%' . $value . '%');
+   foreach ($search_split2 as $search) {
+    $songs->where('title', 'like', '%' . $search . '%');
    }
   }
 
-  $query->select('id', 'title', 'detail', 'created_at');
-  $query->orderBy('created_at', 'desc');
-  $songs = $query->paginate(10);
+  $songs = $songs->orderBy('id', 'desc')->paginate(10);
 
   return view('songs.index', [
-   'songs' => $songs
+   'songs' => $songs,
   ]);
  }
 

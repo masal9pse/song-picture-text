@@ -11,8 +11,10 @@ use App\Comment;
 class Song extends Model
 {
  protected $fillable = [
-  'title', 'detail', 'likes_count', 'file_name'
+  'title', 'detail', 'likes_count', 'file_name', 'search'
  ];
+
+ // protected $with = ['tags'];
 
  public function admin()
  {
@@ -38,5 +40,10 @@ class Song extends Model
  public function like_by()
  {
   return Like::where('user_id', \Auth::user()->id)->first();
+ }
+
+ public function tags()
+ {
+  return $this->belongsToMany(Tag::class);
  }
 }
