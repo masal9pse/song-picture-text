@@ -8,6 +8,7 @@ use App\Models\Song;
 use App\Http\Requests\CreateSongTask;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Models\Tag;
 
 class SongController extends Controller
 {
@@ -30,7 +31,6 @@ class SongController extends Controller
  {
   $search = $request->input('search');
   $query = DB::table('songs');
-
   // もしキーワードがあったら
   if ($search !== null) {
    // 半角スペースを半角に
@@ -44,30 +44,31 @@ class SongController extends Controller
    }
   }
 
-  $query->select('id', 'title', 'detail', 'file_name', 'content', 'created_at');
+  $query->select('id', 'title', 'detail', 'file_name', 'created_at');
   $query->orderBy('created_at', 'desc');
   $songs = $query->paginate(10);
-
+  $tags = Tag::pluck('title', 'id')->toArray();
+  // dd($tags);
   return view('admin.create', [
-   'songs' => $songs
+   'songs' => $songs,
+   'tags' => $tags
   ]);
  }
 
  public function store(CreateSongTask $request)
  {
   $song = new Song;
+  $song->load('tags');
   $song->title = $request->input('title');
   $song->detail = $request->input('detail');
-  $song->content = $request->input('content');
   if ($request->file('file_name')) {
    $song->file_name = $request->file('file_name')->store('public/img');
   }
 
   $song->file_name = basename($song->file_name);
-  // dd($song);
-  // Song::create(['file_name' => basename($song->file_name)]);
 
   $song->save();
+  $song->tags()->sync($request->tags);
   return redirect()->route('admin.create')->with(['success' => 'ファイルを保存しました']);;
  }
 

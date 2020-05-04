@@ -20,8 +20,9 @@ class TagController extends Controller
  /**
   * @return \Illuminate\View\View
   */
- public function create()
+ public function create(Tag $tag)
  {
+  // dd($tag);
   return view('tags.create');
  }
 
@@ -43,7 +44,9 @@ class TagController extends Controller
   */
  public function show(Tag $tag)
  {
-  return view('tags.show', compact('tag'));
+  $songs = $tag->songs()->paginate(20);
+  // dd($songs);
+  return view('tags.show', compact('tag', 'songs'));
  }
 
  /**
@@ -60,11 +63,15 @@ class TagController extends Controller
   * @param Tag $tag
   * @return \Illuminate\Http\RedirectResponse
   */
- public function update(TagRequest $request, Tag $tag)
+ public function update(TagRequest $request)
  {
-  $tag->update($request->all());
+  // dd($tag);
+  $tag = new Tag;
+  // $input = $request->only($tag->getFillable());
+  $tag->title = $request->title;
+  $tag->save();
   return redirect()
-   ->route('tags.edit', $tag)
+   ->route('tags.edit', ['id' => $tag->id])
    ->with('status', 'タグを更新しました。');
  }
 
@@ -77,7 +84,7 @@ class TagController extends Controller
  {
   $tag = Tag::findOrFail($id);
   $tag->delete($id);
-
+  $tag->songs()->detach();
   return redirect()
    ->route('tags.index')
    ->with('status', 'タグを削除しました。');

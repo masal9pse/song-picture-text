@@ -19,25 +19,14 @@
      <button class="btn btn-success my-2 my-sm-0" type="submit">検索する</button>
      {{Form::close()}}
 
-     <div class="panel-heading">タスクを追加する</div>
      <form action="{{ url('/') }}" class="mt-3" method="GET">
       {{ csrf_field() }}
       <button class="btn btn-primary">トップページに戻る</button>
      </form>
-
-     <div class="form">
-
-      @if(count($errors)>0)
-      <div class="alert alert-danger">
-       <ul>
-        @foreach($errors->all() as $error)
-        <li>{{$error}}</li>
-        @endforeach
-       </ul>
-      </div>
-      @endif
-
-     </div>
+     <div class="panel-heading">タスクを追加する</div>
+     <p class="{{ Request::is('tags', 'tags/*') ? 'active' : '' }}">
+      <a class="nav-link" href="{{ route('tags.index') }}">タグ</a>
+     </p>
      @if($errors->any())
      <div class="alert alert-danger">
       @foreach($errors->all() as $message)
@@ -47,7 +36,6 @@
      @endif
 
      createです
-     {{-- {{Form::open(['method' => 'post'],['route' => 'admin.store'],['files' => true])}} --}}
      <form action="{{ route('admin.store')}}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       　タイトル
@@ -56,9 +44,24 @@
       歌詞
       <textarea name="detail" class="mt-5"></textarea>
       <br>
-      <input type="hidden" name="content" value="aaa">
       <br>
       <input type="file" class="form-control" name="file_name">
+      <div class="form-group row">
+       <label for="inputTag" class="col-sm-2 col-form-label">タグ</label>
+       <div class="col-sm-10">
+        @foreach($tags as $key => $tag)
+        <div class="form-check form-check-inline">
+         <input type="checkbox" name="tags[]" value="{{ $key }}" id="tag{{ $key }}" @if(isset($song->tags) &&
+         $song->tags->contains($key))
+         checked
+         @endif
+         >
+         <label for="tag{{ $key }}" class="form-check-label">{{ $tag }}</label>
+        </div>
+        @endforeach
+       </div>
+      </div>
+
       <input type="submit" value="登録する" class="btn btn-info">
      </form>
      {{-- {{Form::close()}} --}}
